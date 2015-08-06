@@ -1,0 +1,22 @@
+AllowAgentForwarding no
+AllowTcpForwarding yes
+AllowStreamLocalForwarding no
+AllowUsers zuul
+AuthenticationMethods publickey
+AuthorizedKeysCommand "/opt/bin/keyfinder %u"
+AuthorizedKeysCommandUser zuul
+ChallengeResponseAuthentication no
+HostKey /zuul/state/ssh_server_key
+# MaxSessions 0 disables interactive sessions
+MaxSessions 0
+PermitRootLogin no
+PermitTunnel no
+# Do not allow a TTY to be allocated
+PermitTTY no
+# Do not allow RC-files per user
+PermitUserRC no
+Port 10022
+Protocol 2
+TCPKeepAlive yes
+UseDNS no
+
