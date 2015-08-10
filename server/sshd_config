@@ -3,8 +3,9 @@ AllowTcpForwarding yes
 AllowStreamLocalForwarding no
 AllowUsers zuul
 AuthenticationMethods publickey
-AuthorizedKeysCommand "/opt/bin/keyfinder %u"
-AuthorizedKeysCommandUser zuul
+AuthorizedKeysFile /zuul/state/authorized_keys
+#AuthorizedKeysCommand "/opt/bin/keymaster get %u"
+#AuthorizedKeysCommandUser zuul
 ChallengeResponseAuthentication no
 HostKey /zuul/state/ssh_server_key
 # MaxSessions 0 disables interactive sessions

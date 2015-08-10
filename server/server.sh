@@ -3,6 +3,7 @@
 . ${COMMON}/common.sh
 
 ssh_opts="-D $ssh_opts"
+authorized_keys="${STATE}/authorized_keys"
 
 sshd_config=/zuul/server/sshd_config
 if [ ! -r $sshd_config ]; then
@@ -22,3 +23,13 @@ fi
 chmod 600 $SERVER_PRIVATE_KEY_PATH
 ssh_opts="-h $SERVER_PRIVATE_KEY_PATH $ssh_opts"
 
+echo "Getting client public key..."
+get_object $CLIENT_PUBLIC_KEY_OBJECT $authorized_keys
+if [ ! -r $CLIENT_PUBLIC_KEY_PATH ]; then
+  echo "Cannot read client public key ${authorized_keys}..."
+  exit 1
+fi
+chmod 600 $authorized_keys
+mv 
+
+sshd -f /zuul/server/sshd_config
