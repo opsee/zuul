@@ -38,28 +38,37 @@ while getopts "hH:P:p:r:u:" opt; do
   esac
 done
 
+if [ -z $SERVER_PUBLIC_KEY_OBJECT ] || [ -z $CLIENT_PRIVATE_KEY_OBJECT ]; then
+  echo "Must specify SERVER_PUBLIC_KEY_OBJECT and CLIENT_PRIVATE_KEY_OBJECT"
+  exit 1
+fi
+
 control_socket=/zuul/socket/zuul-${user}@${host}:${sshd_port}
 # Technically, a multiplexer isn't required... But let's require it for
 # now just to make sure we have it all working correctly.
 if [ ! -s $control_socket ]; then
-  echo "Control socket not found."
-  echo "You must start the multiplexer prior to starting a connector..."
-  exit 1
+  echo "Control socket not found. Connecting directly..."
 else
   echo "Found control socket at: ${control_socket}..."
   ssh_opts="-S $control_socket $ssh_opts"
 fi
 
-get_object $SERVER_PUBLIC_KEY_OBJECT $SERVER_PUBLIC_KEY_PATH
-if [ ! -r $SERVER_PUBLIC_KEY_PATH ]; then
+if [ -z $SERVER_PUBLIC_KEY_OBJECT ]; then
+  echo "Must specify the S3 path to the public key..."
+  exit 1
+fi
+
+get_object $SERVER_PUBLIC_KEY_OBJECT $server_public_key_path
+if [ ! -r $server_public_key_path ]; then
   echo "Unable to read SSH public host key..."
   exit 1
 fi
-echo "$host $(< $SERVER_PUBLIC_KEY_PATH)" > $KNOWN_HOSTS_PATH
+echo "$host $(< $server_public_key_path)" > $KNOWN_HOSTS_PATH
 
-get_object $CLIENT_PRIVATE_KEY_OBJECT $CLIENT_PRIVATE_KEY_PATH
-if [ ! -r $CLIENT_PRIVATE_KEY_PATH ]; then
+
+get_object $CLIENT_PRIVATE_KEY_OBJECT $client_private_key_path
+if [ ! -r $client_private_key_path ]; then
   echo "Unable to read SSH private key..."
   exit 1
 fi
-chmod 0600 $CLIENT_PRIVATE_KEY_PATH
+chmod 0600 $client_private_key_path
