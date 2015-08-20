@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -a
+
 echo "Setting up runtime..."
 
 PATH=$PATH:/opt/bin
@@ -13,32 +15,32 @@ check_env_var() {
 }
 
 get_object() {
-  local key=$KEY_ALIAS
   local bucket=$KEY_BUCKET
   local obj=$1
   local target=$2
-  
+
+  echo "Copying ${obj} from KMS to ${target} locally."
+
   if [ -z "$obj" ] || [ -z "$target" ]; then
     echo "get_object requires two arguments"
     exit 1
   fi
 
-  s3kms -k $key get -b $bucket -o $obj > $target
+  s3kms get -b $bucket -o $obj > $target
 }
 
 required="KEY_ALIAS \
 KEY_BUCKET \
-SERVER_PUBLIC_KEY_OBJECT \
 AWS_DEFAULT_REGION \
 AWS_ACCESS_KEY_ID \
 AWS_SECRET_ACCESS_KEY"
 
-STATE=${STATE:-"/zuul/state"}
-KNOWN_HOSTS_PATH=${STATE}/ssh_known_hosts
-SERVER_PRIVATE_KEY_PATH=${STATE}/ssh_server_key
-SERVER_PUBLIC_KEY_PATH=${SERVER_PRIVATE_KEY_PATH}.pub
-CLIENT_PRIVATE_KEY_PATH=${STATE}/ssh_client_key
-CLIENT_PUBLIC_KEY_PATH=${CLIENT_PRIVATE_KEY_PATH}.pub
+known_hosts_path=${zuul_state}/ssh_known_hosts
+zuul_state=${zuul_state:-"/zuul/state"}
+server_private_key_path=${zuul_state}/ssh_server_key
+server_public_key_path=${server_private_key_path}.pub
+client_private_key_path=${zuul_state}/ssh_client_key
+client_public_key_path=${client_private_key_path}.pub
 
 for v in $required; do
   check_env_var $v
