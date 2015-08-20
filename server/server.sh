@@ -1,9 +1,10 @@
 #!/bin/bash
+# set -x
 
 . ${COMMON}/common.sh
 
 ssh_opts="-D $ssh_opts"
-authorized_keys="${STATE}/authorized_keys"
+authorized_keys="${zuul_state}/authorized_keys"
 
 sshd_config=/zuul/server/sshd_config
 if [ ! -r $sshd_config ]; then
@@ -15,21 +16,23 @@ else
 fi
 
 echo "Getting server private key..."
-get_object $SERVER_PRIVATE_KEY_OBJECT $SERVER_PRIVATE_KEY_PATH
-if [ ! -r $SERVER_PRIVATE_KEY_PATH ]; then
-  echo "Cannot read server private key ${SERVER_PRIVATE_KEY_PATH}..."
+echo $server_private_key_path
+get_object $SERVER_PRIVATE_KEY_OBJECT $server_private_key_path
+if [ ! -r $server_private_key_path ]; then
+  echo "Cannot read server private key ${server_private_key_path}..."
   exit 1
 fi
-chmod 600 $SERVER_PRIVATE_KEY_PATH
-ssh_opts="-h $SERVER_PRIVATE_KEY_PATH $ssh_opts"
+chmod 600 $server_private_key_path
+chown zuul:zuul $server_private_key_path
+ssh_opts="-h $server_private_key_path $ssh_opts"
 
 echo "Getting client public key..."
 get_object $CLIENT_PUBLIC_KEY_OBJECT $authorized_keys
-if [ ! -r $CLIENT_PUBLIC_KEY_PATH ]; then
+if [ ! -r $authorized_keys ]; then
   echo "Cannot read client public key ${authorized_keys}..."
   exit 1
 fi
 chmod 600 $authorized_keys
-mv 
+chown zuul:zuul $authorized_keys
 
-sshd -f /zuul/server/sshd_config
+/usr/sbin/sshd -d -f /zuul/server/sshd_config
