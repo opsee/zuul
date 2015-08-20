@@ -14,10 +14,10 @@ ENV AWS_ACCESS_KEY_ID=""
 
 ENV PATH="/bin:/sbin:/usr/bin:/usr/sbin:/opt/bin:/opt/sbin:/zuul/bin"
 ENV COMMON="/zuul/common"
-ENV STATE="/zuul/state"
+ENV zuul_state="/zuul/state"
 ENV PATH="/zuul/bin:/bin:/sbin:/usr/bin:/usr/sbin:/opt/bin"
 
-RUN apk --update add openssh bash && \
+RUN apk --update add openssh bash ca-certificates && \
     mkdir -p /zuul/bin && \
     mkdir -p /zuul/socket && \
     ln -sf /zuul/connector/connector.sh /zuul/bin/connector && \
