@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 usage() {
   cat <<EOF
@@ -11,6 +12,7 @@ Usage: $0
   -r PORT       Remote port to listen on (default: random).
   -u USERNAME   Username to connect with (default: zuul).
 EOF
+}
 
 OPTIND=1
 
@@ -38,7 +40,7 @@ while getopts "hH:P:p:r:u:" opt; do
   esac
 done
 
-if [ -z $SERVER_PUBLIC_KEY_OBJECT ] || [ -z $CLIENT_PRIVATE_KEY_OBJECT ]; then
+if [ -z "$SERVER_PUBLIC_KEY_OBJECT" ] || [ -z "$CLIENT_PRIVATE_KEY_OBJECT" ]; then
   echo "Must specify SERVER_PUBLIC_KEY_OBJECT and CLIENT_PRIVATE_KEY_OBJECT"
   exit 1
 fi
@@ -72,3 +74,4 @@ if [ ! -r $client_private_key_path ]; then
   exit 1
 fi
 chmod 0600 $client_private_key_path
+

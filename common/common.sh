@@ -1,21 +1,20 @@
 #!/bin/bash
-
+# set -x
 set -a
 
 echo "Setting up runtime..."
 
-PATH=$PATH:/opt/bin
+if [ ! -d /zuul/state ]; then
+  mkdir -p /zuul/state
+fi
 
-check_env_var() {
-  local var=$1
-  if [ -z "${!var}" ]; then
-    echo "Must supply $var environment variable"
-    exit 1
-  fi
-}
+/opt/bin/ec2-env > /zuul/state/environment
+if [ $? -eq 0 ]; then
+  eval "$(< /zuul/state/environment)"
+fi
 
-get_object() {
-  local bucket=$KEY_BUCKET
+get_encrypted_object() {
+  local bucket=opsee-keys
   local obj=$1
   local target=$2
 
@@ -27,27 +26,12 @@ get_object() {
   fi
 
   s3kms get -b $bucket -o $obj > $target
+  chmod 600 $target
+  if [ ! -r $target ]; then
+    echo "Unable to read $target"
+    exit 1
+  fi
 }
 
-required="KEY_ALIAS \
-KEY_BUCKET \
-AWS_DEFAULT_REGION \
-AWS_ACCESS_KEY_ID \
-AWS_SECRET_ACCESS_KEY"
-
-known_hosts_path=${zuul_state}/ssh_known_hosts
-zuul_state=${zuul_state:-"/zuul/state"}
-server_private_key_path=${zuul_state}/ssh_server_key
-server_public_key_path=${server_private_key_path}.pub
-client_private_key_path=${zuul_state}/ssh_client_key
-client_public_key_path=${client_private_key_path}.pub
-
-for v in $required; do
-  check_env_var $v
-done
-
-if [ ! -d $state_dir ]; then
-  mkdir -p $state_dir
-fi
-
-ssh_opts="-v"
+get_encrypted_object dev/ca.crt /zuul/state/ca.crt
+get_encrypted_object dev/tls-auth.key /zuul/state/tls-auth.key
