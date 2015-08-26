@@ -7,7 +7,7 @@ Wants=bastion-elb@%i.service
 
 [Service]
 EnvironmentFile=/etc/environment
-ExecStartPre=-/usr/bin/docker kill %p-%i
+ExecStartPre=-/usr/bin/docker stop -t 5 %p-%i
 ExecStartPre=-/usr/bin/docker rm %p-%i
 ExecStartPre=/usr/bin/docker pull quay.io/opsee/zuul
 ExecStart=/usr/bin/docker run --name %p-%i quay.io/opsee/zuul router --subnet 10.0.%i.0/24 --table rtb-76509513
