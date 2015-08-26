@@ -2,6 +2,7 @@
 Description=Bastion VPN Server
 After=docker.service
 Requires=docker.service
+Wants=bastion-router@%i.service
 
 [Service]
 EnvironmentFile=/etc/environment
