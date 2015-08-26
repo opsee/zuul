@@ -1,0 +1,15 @@
+[Unit]
+Description=Bastion VPN Server
+After=docker.service
+Requires=docker.service
+
+[Service]
+EnvironmentFile=/etc/environment
+ExecStartPre=-/usr/bin/docker kill %p-%i
+ExecStartPre=-/usr/bin/docker rm %p-%i
+ExecStartPre=/usr/bin/docker pull quay.io/opsee/zuul
+ExecStart=/usr/bin/docker run --privileged=true --name %p-%i -p 1194:1194 quay.io/opsee/zuul server 10.0.%i.0
+ExecStop=/usr/bin/docker stop %p-%i
+
+[X-Fleet]
+Conflicts=bastion-vpn@*.service

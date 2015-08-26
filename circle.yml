@@ -1,0 +1,14 @@
+machine:
+  services:
+    - docker
+  environment:
+    ci: "true"
+dependencies:
+  override:
+    - docker info
+    - go version
+    - docker pull quay.io/opsee/build-go
+test:
+  override:
+    - docker run -e "TARGETS=linux/amd64" -v `pwd`/gozer:/build quay.io/opsee/build-go
+    - docker build -t quay.io/opsee/zuul:latest .
