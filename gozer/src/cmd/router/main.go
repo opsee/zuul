@@ -1,10 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
-	"os/signal"
 
 	"github.com/codegangsta/cli"
 	"github.com/opsee/gozer/router"
@@ -30,21 +28,14 @@ func announce(c *cli.Context) {
 		log.Fatal("Must specify --subnet")
 	}
 
-	err = rtr.Announce(subnet)
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-
-	sig := make(chan os.Signal, 1)
-	signal.Notify(sig, os.Interrupt, os.Kill)
-
-	// Block until a signal is received.
-	s := <-sig
-	fmt.Println("Got signal, shutting down:", s)
-
 	err = rtr.Delete(subnet)
 	if err != nil {
 		log.Fatal(err)
+	}
+
+	err = rtr.Announce(subnet)
+	if err != nil {
+		log.Fatal(err.Error())
 	}
 }
 
