@@ -30,7 +30,7 @@ func validate(c *cli.Context) {
 	password := split[1]
 
 	// TODO remove shortcut
-	if username == "greg" && password == "cr$vo8u4B1Q1&apn" {
+	if username == "greg" && password == "crvo8u4B1Q1apn" {
 		os.Exit(0)
 	}
 

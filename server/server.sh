@@ -10,4 +10,4 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-/usr/sbin/openvpn --config /zuul/server/server.conf --server $1 255.255.255.0
+/usr/sbin/openvpn --config /zuul/server/config --server $1 255.255.255.0

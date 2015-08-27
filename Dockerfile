@@ -10,7 +10,7 @@ RUN apk --update add openvpn bash curl && \
     mkdir -p /zuul/state && \
     ln -sf /zuul/client/client.sh /zuul/bin/client && \
     ln -sf /zuul/server/server.sh /zuul/bin/server && \
-    ln -sf /zuul/gozer/auth.sh /zuul/bin/auth && \
+    ln -sf /zuul/gozer/bin/auth /zuul/bin/auth && \
     ln -sf /zuul/gozer/bin/router /zuul/bin/router && \
     openssl dhparam -out /zuul/state/dh1024.pem 1024 && \
     adduser -D -g '' -h /zuul -H -s /sbin/nologin zuul && \
