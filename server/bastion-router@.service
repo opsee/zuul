@@ -6,6 +6,7 @@ PartOf=bastion-vpn@%i.service
 Wants=bastion-elb@%i.service
 
 [Service]
+User=core
 EnvironmentFile=/etc/environment
 ExecStartPre=-/usr/bin/docker stop -t 5 %p-%i
 ExecStartPre=-/usr/bin/docker rm %p-%i
