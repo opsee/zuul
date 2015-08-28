@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	"os/signal"
 
 	"github.com/codegangsta/cli"
 	"github.com/opsee/gozer/router"
@@ -37,6 +38,12 @@ func announce(c *cli.Context) {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, os.Interrupt, os.Kill)
+
+	s := <-sigs
+	log.Println("Exiting due to signal:", s)
 }
 
 func main() {
