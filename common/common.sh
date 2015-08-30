@@ -33,5 +33,6 @@ get_encrypted_object() {
   fi
 }
 
-get_encrypted_object dev/ca.crt /zuul/state/ca.crt
-get_encrypted_object dev/tls-auth.key /zuul/state/tls-auth.key
+# get_encrypted_object dev/ca.crt /zuul/state/ca.crt
+curl -Lo /zuul/state/ca.crt https://s3-us-west-1.amazonaws.com/opsee-public-keys/ca.crt
+# get_encrypted_object dev/tls-auth.key /zuul/state/tls-auth.key

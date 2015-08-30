@@ -8,6 +8,7 @@ RUN apk --update add openvpn bash curl && \
     chmod 755 /opt/bin/ec2-env && \
     mkdir -p /zuul/bin && \
     mkdir -p /zuul/state && \
+    ln -sf /zuul/common/tls-auth.key /zuul/state/tls-auth.key && \
     ln -sf /zuul/client/client.sh /zuul/bin/client && \
     ln -sf /zuul/server/server.sh /zuul/bin/server && \
     ln -sf /zuul/gozer/bin/auth /zuul/bin/auth && \
