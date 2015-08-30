@@ -25,7 +25,7 @@ get_encrypted_object() {
     exit 1
   fi
 
-  s3kms get -b $bucket -o $obj > $target
+  s3kms -r "us-west-1" get -b $bucket -o $obj > $target
   chmod 600 $target
   if [ ! -r $target ]; then
     echo "Unable to read $target"
