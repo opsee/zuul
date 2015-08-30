@@ -14,7 +14,7 @@ import (
 
 const (
 	version = "0.0.1"
-	authURL = "https://auth.opsy.co/authentication/bastion/verify"
+	authURL = "https://vape.opsy.co/bastions/authenticate"
 )
 
 func validate(c *cli.Context) {
@@ -29,17 +29,12 @@ func validate(c *cli.Context) {
 	username := split[0]
 	password := split[1]
 
-	// TODO remove shortcut
-	if username == "greg" && password == "crvo8u4B1Q1apn" {
-		os.Exit(0)
-	}
-
 	client := &http.Client{
 		Timeout: 5 * time.Second,
 	}
 
 	resp, err := client.PostForm(authURL, url.Values{
-		"username": []string{username},
+		"id":       []string{username},
 		"password": []string{password},
 	})
 	if err != nil {
