@@ -8,7 +8,7 @@ cert /zuul/state/server.crt
 key /zuul/state/server.key
 tls-auth /zuul/state/tls-auth.key
 
-auth-user-pass-verify /zuul/bin/auth via-file
+auth-user-pass-verify "/zuul/bin/auth -u https://vape.opsy.co/bastions/authenticate" via-file
 script-security 3 system
 username-as-common-name
 tmp-dir /dev/shm
