@@ -1,10 +1,11 @@
 package main
 
 import (
+	"bytes"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"net/url"
 	"os"
 	"strings"
 	"time"
@@ -14,10 +15,11 @@ import (
 
 const (
 	version = "0.0.1"
-	authURL = "https://vape.opsy.co/bastions/authenticate"
 )
 
 func validate(c *cli.Context) {
+	authURL := c.String("url")
+
 	upFile := c.Args().First()
 	up, err := ioutil.ReadFile(upFile)
 	if err != nil {
@@ -33,10 +35,16 @@ func validate(c *cli.Context) {
 		Timeout: 5 * time.Second,
 	}
 
-	resp, err := client.PostForm(authURL, url.Values{
-		"id":       []string{username},
-		"password": []string{password},
-	})
+	authStr := []byte(fmt.Sprintf(`{"id":"%s","password":"%s"}`, username, password))
+	req, err := http.NewRequest("POST", authURL, bytes.NewBuffer(authStr))
+	if err != nil {
+		log.Println("Unable to create request.")
+		log.Fatal(err.Error())
+	}
+	req.Header.Set("Content-Type", "application/json")
+	fmt.Println(req.Body)
+
+	resp, err := client.Do(req)
 	if err != nil {
 		log.Println("Error contacting auth service.")
 		log.Fatal(err.Error())
@@ -47,6 +55,7 @@ func validate(c *cli.Context) {
 	if resp.StatusCode == 200 {
 		os.Exit(0)
 	} else {
+		log.Println(resp)
 		os.Exit(1)
 	}
 }
@@ -57,6 +66,12 @@ func main() {
 	app.Version = version
 	app.Usage = "Query the authentication service to validate a username/password hash."
 	app.Action = validate
+	app.Flags = []cli.Flag{
+		cli.StringFlag{
+			Name:  "url, u",
+			Value: os.Getenv("AUTH_URL"),
+		},
+	}
 
 	app.Run(os.Args)
 }
