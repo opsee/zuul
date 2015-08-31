@@ -10,7 +10,7 @@ EnvironmentFile=/etc/environment
 ExecStartPre=-/usr/bin/docker stop -t 5 %p-%i
 ExecStartPre=-/usr/bin/docker rm %p-%i
 ExecStartPre=/usr/bin/docker pull quay.io/opsee/zuul:latest
-ExecStart=/usr/bin/docker run --net=host --cap-add=NET_ADMIN --device=/dev/net/tun --name %p-%i -p 1194:1194 quay.io/opsee/zuul:latest server 10.0.%i.0
+ExecStart=/usr/bin/docker run -e AUTH_URL=https://vape.opsy.co/bastions/authenticate --net=host --cap-add=NET_ADMIN --device=/dev/net/tun --name %p-%i -p 1194:1194 quay.io/opsee/zuul:latest server 10.0.%i.0
 ExecStop=/usr/bin/docker stop -t 5 %p-%i
 
 [X-Fleet]

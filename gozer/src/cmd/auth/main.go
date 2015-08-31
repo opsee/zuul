@@ -42,7 +42,6 @@ func validate(c *cli.Context) {
 		log.Fatal(err.Error())
 	}
 	req.Header.Set("Content-Type", "application/json")
-	fmt.Println(req.Body)
 
 	resp, err := client.Do(req)
 	if err != nil {
