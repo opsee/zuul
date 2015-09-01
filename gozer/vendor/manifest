@@ -20,6 +20,24 @@
 			"branch": "master"
 		},
 		{
+			"importpath": "github.com/mreiferson/go-snappystream",
+			"repository": "https://github.com/mreiferson/go-snappystream",
+			"revision": "028eae7ab5c4c9e2d1cb4c4ca1e53259bbe7e504",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/nsqio/go-nsq",
+			"repository": "https://github.com/nsqio/go-nsq",
+			"revision": "04ffac3a59c9cb94c3eed73ec965d87762bcebe9",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/opsee/pomapper",
+			"repository": "https://github.com/opsee/pomapper",
+			"revision": "531ed787d3bbbe68fc3d1a6e857f74e8c7847053",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/shiena/ansicolor",
 			"repository": "https://github.com/shiena/ansicolor",
 			"revision": "a5e2b567a4dd6cc74545b8a4f27c9d63b9e7735b",
