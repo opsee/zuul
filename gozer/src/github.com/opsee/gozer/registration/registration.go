@@ -63,12 +63,19 @@ func (s *nsqdService) register() {
 	svcs, err := pomapper.Services()
 	if err != nil {
 		log.Println(err.Error())
+		return
 	}
 
 	ip, err := ioutil.ReadFile(ipFilePath)
 	if err != nil {
 		log.Println("Error reading IP from file:", ipFilePath)
 		log.Println(err.Error())
+		return
+	}
+
+	if len(ip) == 0 {
+		log.Println("IP file empty:", ipFilePath)
+		return
 	}
 
 	msg := &connectedMessage{
@@ -84,9 +91,13 @@ func (s *nsqdService) register() {
 	if err != nil {
 		log.Println("Unable to marshal message:", msg)
 		log.Println(err.Error())
+		return
 	}
 
-	s.producer.Publish(nsqdTopic, msgBytes)
+	log.Println("Publishing message:", msg)
+	if err := s.producer.Publish(nsqdTopic, msgBytes); err != nil {
+		log.Println(err.Error())
+	}
 }
 
 func (s *nsqdService) registrationLoop() {

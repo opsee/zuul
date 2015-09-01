@@ -7,7 +7,8 @@ tls-client
 ca /zuul/state/ca.crt
 tls-auth /zuul/state/tls-auth.key
 auth-user-pass /dev/shm/up
-ipchange /zuul/client/ipchange.sh
+script-security 3 system
+route-up /zuul/client/ip.sh
 
 nobind
 user zuul
