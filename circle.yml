@@ -12,3 +12,7 @@ test:
   override:
     - docker run -e "TARGETS=linux/amd64" -v `pwd`/gozer:/build quay.io/opsee/build-go
     - docker build -t quay.io/opsee/zuul:latest .
+deployment:
+  quay:
+    - docker login -e $DOCKER_EMAIL -u $DOCKER_USERNAME -p $DOCKER_PASSWORD quay.io
+    - docker push quay.io/opsee/zuul:latest

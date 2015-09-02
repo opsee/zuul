@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/nsqio/go-nsq"
@@ -81,11 +82,13 @@ func (s *nsqdService) register() {
 		return
 	}
 
+	ipStr := strings.TrimRight(string(ip), "\n")
+
 	msg := &connectedMessage{
 		s.customerID,
 		s.bastionID,
 		s.instanceID,
-		string(ip),
+		ipStr,
 		svcs,
 		time.Now().Unix(),
 	}
@@ -97,7 +100,7 @@ func (s *nsqdService) register() {
 		return
 	}
 
-	log.Println("Publishing message:", msg)
+	log.Println("Publishing message:", string(msgBytes))
 	if err := s.producer.Publish(nsqdTopic, msgBytes); err != nil {
 		log.Println(err.Error())
 	}

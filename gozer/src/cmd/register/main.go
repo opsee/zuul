@@ -15,7 +15,7 @@ const (
 )
 
 func register(c *cli.Context) {
-	interval := time.Minute * 1
+	interval := time.Second * 30
 
 	customerID := c.String("customer-id")
 	bastionID := c.String("bastion-id")
