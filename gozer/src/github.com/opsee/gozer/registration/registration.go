@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/nsqio/go-nsq"
-	"github.com/opsee/pomapper"
+	"github.com/opsee/portmapper"
 )
 
 const (
@@ -22,12 +22,12 @@ type connectedMessage struct {
 	BastionID  string              `json:"bastion_id"`
 	InstanceID string              `json:"instance_id"`
 	IPAddress  string              `json:"ip_address"`
-	Services   []*pomapper.Service `json:"services"`
+	Services   []*portmapper.Service `json:"services"`
 	Timestamp  int64               `json:"timestamp"`
 }
 
 // Service provides registration with Opsee of components exposed by
-// pomapper.
+// portmapper.
 type Service interface {
 	Start() error
 	Stop() error
@@ -44,11 +44,11 @@ type nsqdService struct {
 	instanceID           string
 }
 
-// NewService creates a new registration.Service for NSQ using pomapper.
+// NewService creates a new registration.Service for NSQ using portmapper.
 func NewService(interval time.Duration, nsqdHost string, customerID string, bastionID string, instanceID string) *nsqdService {
 	svc := &nsqdService{
 		nsqdHost:             nsqdHost,
-		portmapPath:          pomapper.RegistryPath,
+		portmapPath:          portmapper.RegistryPath,
 		stopChan:             make(chan struct{}),
 		registrationInterval: interval,
 		customerID:           customerID,
@@ -60,7 +60,7 @@ func NewService(interval time.Duration, nsqdHost string, customerID string, bast
 }
 
 func (s *nsqdService) register() {
-	svcs, err := pomapper.Services()
+	svcs, err := portmapper.Services()
 	if err != nil {
 		log.Println(err.Error())
 		return
