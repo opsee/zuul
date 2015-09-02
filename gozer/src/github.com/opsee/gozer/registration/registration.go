@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
+	"os"
 	"time"
 
 	"github.com/nsqio/go-nsq"
@@ -18,12 +19,12 @@ const (
 // /opsee.co/routes/customer_id/instance_id/svcname=ip:port
 
 type connectedMessage struct {
-	CustomerID string              `json:"customer_id"`
-	BastionID  string              `json:"bastion_id"`
-	InstanceID string              `json:"instance_id"`
-	IPAddress  string              `json:"ip_address"`
+	CustomerID string                `json:"customer_id"`
+	BastionID  string                `json:"bastion_id"`
+	InstanceID string                `json:"instance_id"`
+	IPAddress  string                `json:"ip_address"`
 	Services   []*portmapper.Service `json:"services"`
-	Timestamp  int64               `json:"timestamp"`
+	Timestamp  int64                 `json:"timestamp"`
 }
 
 // Service provides registration with Opsee of components exposed by
@@ -55,6 +56,8 @@ func NewService(interval time.Duration, nsqdHost string, customerID string, bast
 		bastionID:            bastionID,
 		instanceID:           instanceID,
 	}
+
+	portmapper.EtcdHost = os.Getenv("ETCD_HOST")
 
 	return svc
 }
