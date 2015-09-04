@@ -1,23 +1,10 @@
-FROM quay.io/opsee/vinz
+FROM gliderlabs/alpine:3.2
 MAINTAINER Greg Poirier <greg@opsee.co>
 
-ENV PATH="/zuul/bin:/zuul/gozer/bin:/bin:/sbin:/usr/bin:/usr/sbin:/opt/bin"
-
-RUN apk --update add openvpn bash curl && \
+RUN mkdir -p /zuul/bin /opt/bin && \
+    apk add --update ca-certificates curl && \
     curl -Lo /opt/bin/ec2-env https://s3-us-west-2.amazonaws.com/opsee-releases/go/ec2-env/ec2-env && \
-    chmod 755 /opt/bin/ec2-env && \
-    mkdir -p /zuul/bin && \
-    mkdir -p /zuul/state && \
-    ln -sf /zuul/common/tls-auth.key /zuul/state/tls-auth.key && \
-    ln -sf /zuul/client/client.sh /zuul/bin/client && \
-    ln -sf /zuul/client/register.sh /zuul/bin/register && \
-    ln -sf /zuul/server/server.sh /zuul/bin/server && \
-    openssl dhparam -out /zuul/state/dh1024.pem 1024 && \
-    adduser -D -g '' -h /zuul -H -s /sbin/nologin zuul && \
-    passwd -u zuul
+    chmod 755 /opt/bin/ec2-env
 
-COPY . /zuul
-
-RUN chown -R zuul:zuul /zuul
-
-CMD ["/bin/bash"]
+COPY register.sh /zuul/bin/register.sh
+COPY bin/ /zuul/bin/

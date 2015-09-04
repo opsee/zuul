@@ -10,3 +10,7 @@ Dana Barrett: [in an inhuman demonic voice] There is no Dana, only Zuul!
 
 Dr. Peter Venkman: What a lovely singing voice you must have.
 
+## Zuul
+
+Zuul's responsibility is for communicating with Vape and registering the
+Bastion with Opsee.
