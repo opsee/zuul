@@ -18,7 +18,7 @@ deployment:
     branch: master
     owner: opsee
     commands:
-      - aws s3 cp bin/auth s3://opsee-releases/go/zuul/auth
-      - aws s3 cp bin/register s3://opsee-releases/go/zuul/register
+      - aws s3 cp --acl public-read bin/auth s3://opsee-releases/go/zuul/auth
+      - aws s3 cp --acl public-read bin/register s3://opsee-releases/go/zuul/register
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USERNAME -p $DOCKER_PASSWORD quay.io
       - docker push quay.io/opsee/zuul:latest
