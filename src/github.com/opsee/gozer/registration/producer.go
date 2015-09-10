@@ -47,15 +47,15 @@ func (s *producerService) register() {
 		return
 	}
 
-	ip, err := ioutil.ReadFile(ipFilePath)
+	ip, err := ioutil.ReadFile(IPFilePath)
 	if err != nil {
-		log.Println("Error reading IP from file:", ipFilePath)
+		log.Println("Error reading IP from file:", IPFilePath)
 		log.Println(err.Error())
 		return
 	}
 
 	if len(ip) == 0 {
-		log.Println("IP file empty:", ipFilePath)
+		log.Println("IP file empty:", IPFilePath)
 		return
 	}
 

@@ -5,9 +5,18 @@ import (
 )
 
 const (
-	ipFilePath = "/zuul/state/ip"
-	nsqdTopic  = "connected"
+	ipFilePathDefault = "/gozer/state/ip"
+	nsqdTopic         = "connected"
 )
+
+var (
+	// The location of the file produced by OpenVPN containing the instance IP.
+	IPFilePath string
+)
+
+func init() {
+	IPFilePath = ipFilePathDefault
+}
 
 // /opsee.co/routes/customer_id/instance_id/svcname = ip:port
 

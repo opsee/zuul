@@ -21,6 +21,7 @@ func register(c *cli.Context) {
 	bastionID := c.String("bastion-id")
 	instanceID := c.String("instance-id")
 	nsqdHost := c.String("nsqd-host")
+	registration.IPFilePath = c.String("ip-file-path")
 	//func NewService(interval time.Duration, nsqdHost string, customerID string, bastionID string, instanceID string) *nsqdService {
 	svc := registration.NewProducer(interval, nsqdHost, customerID, bastionID, instanceID)
 
@@ -56,6 +57,10 @@ func main() {
 		cli.StringFlag{
 			Name:  "nsqd-host, n",
 			Value: os.Getenv("NSQD_HOST"),
+		},
+		cli.StringFlag{
+			Name:  "ip-file-path, f",
+			Value: "/gozer/state/ip",
 		},
 	}
 
