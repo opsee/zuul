@@ -6,7 +6,7 @@ import (
 
 const (
 	ipFilePathDefault = "/gozer/state/ip"
-	nsqdTopic         = "connected"
+	nsqdTopic         = "_.connected"
 )
 
 var (
