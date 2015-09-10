@@ -6,7 +6,7 @@ import (
 	"os/signal"
 
 	"github.com/codegangsta/cli"
-	"github.com/opsee/gozer/router"
+	"github.com/opsee/zuul/router"
 )
 
 const (

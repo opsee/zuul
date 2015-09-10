@@ -61,7 +61,7 @@ func (s *producerService) register() {
 
 	ipStr := strings.TrimRight(string(ip), "\n")
 
-	msg := &connectedMessage{
+	msg := &ConnectedMessage{
 		s.customerID,
 		s.bastionID,
 		s.instanceID,
@@ -103,6 +103,8 @@ func (s *producerService) Start() error {
 	if err != nil {
 		return err
 	}
+	producer.SetLogger(log.New(os.Stderr, "", log.LstdFlags), nsq.LogLevelInfo)
+
 	s.producer = producer
 
 	go s.registrationLoop()

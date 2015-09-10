@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/codegangsta/cli"
-	"github.com/opsee/gozer/registration"
+	"github.com/opsee/zuul/registration"
 )
 
 const (

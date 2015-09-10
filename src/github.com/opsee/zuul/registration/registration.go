@@ -20,7 +20,7 @@ func init() {
 
 // /opsee.co/routes/customer_id/instance_id/svcname = ip:port
 
-type connectedMessage struct {
+type ConnectedMessage struct {
 	CustomerID string                `json:"customer_id"`
 	BastionID  string                `json:"bastion_id"`
 	InstanceID string                `json:"instance_id"`
