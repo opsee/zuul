@@ -31,7 +31,7 @@ func announce(c *cli.Context) {
 
 	err = rtr.Delete(subnet)
 	if err != nil {
-		log.Fatal(err)
+		log.Println("Error deleting route:", err)
 	}
 
 	err = rtr.Announce(subnet)
