@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -a
 
 if [ -x /opt/bin/ec2-env ]; then
