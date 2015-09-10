@@ -1,7 +1,5 @@
-gozer/bin
-gozer/target
-gozer/pkg
-/keys/
-/state/
+bin
+target
+pkg
 
 .tags

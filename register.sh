@@ -10,4 +10,4 @@ fi
 
 NSQD_HOST="nsqd.opsy.co:4150"
 
-/gozer/bin/register
+/zuul/bin/register
