@@ -65,7 +65,7 @@ func (c *consumerService) registerConnection(msg *nsq.Message) error {
 
 	for _, connectedSvc := range cMsg.Services {
 		key := fmt.Sprintf("/opsee.co/routes/%s/%s/%s", cMsg.CustomerID, cMsg.InstanceID, connectedSvc.Name)
-		value := fmt.Sprintf("%s:%s", connectedSvc.Hostname, connectedSvc.Port)
+		value := fmt.Sprintf("%s:%s", cMsg.IPAddress, connectedSvc.Port)
 
 		if _, err := c.etcdClient.Set(key, value, 60); err != nil {
 			return err
