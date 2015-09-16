@@ -35,7 +35,7 @@ func validate(c *cli.Context) {
 		Timeout: 5 * time.Second,
 	}
 
-	authStr := []byte(fmt.Sprintf(`{"id":%s,"password":%s}`, username, password))
+	authStr := []byte(fmt.Sprintf(`{"id":"%s","password":"%s"}`, username, password))
 	req, err := http.NewRequest("POST", authURL, bytes.NewBuffer(authStr))
 	if err != nil {
 		log.Println("Unable to create request.")
