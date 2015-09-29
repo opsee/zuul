@@ -2,8 +2,6 @@
 Description=Bastion VPN Router
 After=docker.service
 Requires=docker.service
-PartOf=bastion-vpn@%i.service
-Wants=bastion-elb@%i.service
 
 [Service]
 User=core
@@ -13,6 +11,3 @@ ExecStartPre=-/usr/bin/docker rm %p-%i
 ExecStartPre=/usr/bin/docker pull quay.io/opsee/zuul:latest
 ExecStart=/usr/bin/docker run --name %p-%i quay.io/opsee/zuul:latest connect --etcd-address=http://${COREOS_PRIVATE_IPV4}:2379 --nsqlookupd-tcp-address=nsqlookupd.opsy.co:4161
 ExecStop=/usr/bin/docker stop -t 5 %p-%i
-
-[X-Fleet]
-MachineOf=bastion-vpn@%i.service
