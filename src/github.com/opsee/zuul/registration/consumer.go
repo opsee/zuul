@@ -85,5 +85,6 @@ func (c *consumerService) Start() error {
 
 func (c *consumerService) Stop() error {
 	c.consumer.Stop()
+	c.etcdClient.Close()
 	return nil
 }
