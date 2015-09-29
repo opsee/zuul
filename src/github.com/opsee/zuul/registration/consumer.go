@@ -67,6 +67,7 @@ func (c *consumerService) registerConnection(msg *nsq.Message) error {
 	svcMap := make(map[string]*portmapper.Service)
 
 	for _, svc := range cMsg.Services {
+		svc.Hostname = cMsg.IPAddress
 		svcMap[svc.Name] = svc
 	}
 
