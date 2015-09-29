@@ -8,6 +8,7 @@ import (
 
 	"github.com/coreos/go-etcd/etcd"
 	"github.com/nsqio/go-nsq"
+	"github.com/opsee/portmapper"
 )
 
 // /opsee.co/routes/customer_id/instance_id/svcname = ip:port
@@ -63,16 +64,19 @@ func (c *consumerService) registerConnection(msg *nsq.Message) error {
 		return err
 	}
 	log.Println("Handling message:", string(msg.Body))
+	svcMap := make(map[string]*portmapper.Service)
 
-	svcs, err := json.Marshal(cMsg.Services)
+	for _, svc := range cMsg.Services {
+		svcMap[svc.Name] = svc
+	}
+
+	key := fmt.Sprintf("/opsee.co/routes/%s/%s", cMsg.CustomerID, cMsg.InstanceID)
+	mapBytes, err := json.Marshal(svcMap)
 	if err != nil {
 		return err
 	}
 
-	key := fmt.Sprintf("/opsee.co/routes/%s/%s", cMsg.CustomerID, cMsg.InstanceID)
-	value := string(svcs)
-
-	if _, err := c.etcdClient.Set(key, value, 60); err != nil {
+	if _, err := c.etcdClient.Set(key, string(mapBytes), 60); err != nil {
 		return err
 	}
 
