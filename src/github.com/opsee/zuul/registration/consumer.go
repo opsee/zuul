@@ -55,25 +55,25 @@ func NewConsumer(consumerName, etcdHost string, nsqLookupdHosts []string, concur
 	return svc, nil
 }
 
-// /opsee.co/routes/customer_id/instance_id/svcname = ip:port
+// /opsee.co/routes/customer_id/instance_id
 func (c *consumerService) registerConnection(msg *nsq.Message) error {
 	cMsg := &ConnectedMessage{}
 	if err := json.Unmarshal(msg.Body, cMsg); err != nil {
 		log.Println("Error unmarshaling connected message:", msg)
 		return err
 	}
-	log.Println("Handling message:", msg.Body)
+	log.Println("Handling message:", string(msg.Body))
 
-	for _, connectedSvc := range cMsg.Services {
-		log.Printf("Registering %s service for customer %s, bastion %s, at IP: %s, port: %s", connectedSvc.Name, cMsg.CustomerID, cMsg.InstanceID, cMsg.IPAddress, connectedSvc.Port)
-		key := fmt.Sprintf("/opsee.co/routes/%s/%s/%s", cMsg.CustomerID, cMsg.InstanceID, connectedSvc.Name)
-		value := fmt.Sprintf("%s:%d", cMsg.IPAddress, connectedSvc.Port)
+	svcs, err := json.Marshal(cMsg.Services)
+	if err != nil {
+		return err
+	}
 
-		resp, err := c.etcdClient.Set(key, value, 60)
-		if err != nil {
-			return err
-		}
-		log.Printf("ETCD Response Node: %s", *resp.Node)
+	key := fmt.Sprintf("/opsee.co/routes/%s/%s", cMsg.CustomerID, cMsg.InstanceID)
+	value := string(svcs)
+
+	if _, err := c.etcdClient.Set(key, value, 60); err != nil {
+		return err
 	}
 
 	return nil
