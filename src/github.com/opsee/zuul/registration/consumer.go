@@ -20,13 +20,6 @@ const (
 	RegistrationTTL = 60
 )
 
-var (
-	nsqLookupds = []string{
-		"nsqlookupd-1.opsy.co",
-		"nsqlookupd-2.opsy.co",
-	}
-)
-
 type consumerService struct {
 	etcdClient   *etcd.Client
 	consumer     *nsq.Consumer
