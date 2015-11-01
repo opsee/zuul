@@ -8,6 +8,4 @@ if [ -x /opt/bin/ec2-env ]; then
   fi
 fi
 
-NSQD_HOST="nsqd.opsy.co:4150"
-
 /zuul/bin/register
