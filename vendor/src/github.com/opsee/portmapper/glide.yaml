@@ -1,7 +1,0 @@
-package: portmapper
-import:
-  - package: github.com/stretchr/testify
-  - package: github.com/coreos/etcd
-    subpackages:
-      - /client
-  - package: github.com/Sirupsen/logrus
