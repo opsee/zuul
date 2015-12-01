@@ -64,7 +64,7 @@ func (c *consumerService) registerConnection(msg *nsq.Message) error {
 		svcMap[svc.Name] = svc
 	}
 
-	key := fmt.Sprintf("/opsee.co/routes/%s/%s", cMsg.CustomerID, cMsg.InstanceID)
+	key := fmt.Sprintf("/opsee.co/routes/%s/%s", cMsg.CustomerID, cMsg.BastionID)
 	mapBytes, err := json.Marshal(svcMap)
 	if err != nil {
 		return err
