@@ -17,7 +17,7 @@ func connect(c *cli.Context) {
 	etcd := c.String("etcd-address")
 	nsq := c.StringSlice("nsqlookupd-tcp-address")
 
-	svc, err := registration.NewConsumer("connected", etcd, nsq, c.Int("consumer-concurrency"))
+	svc, err := registration.NewConsumer("connected", etcd, nsq, c.Int("consumer-concurrency"), 11)
 	if err != nil {
 		log.Println("Unable to create consumer: etcd =", etcd, "nsq = ", nsq)
 		log.Fatal(err)

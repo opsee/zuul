@@ -3,11 +3,11 @@ package registration
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"os"
 	"strings"
 	"time"
 
+	"github.com/Sirupsen/logrus"
 	"github.com/nsqio/go-nsq"
 	"github.com/opsee/portmapper"
 )
@@ -43,19 +43,18 @@ func NewProducer(interval time.Duration, nsqdHost string, customerID string, bas
 func (s *producerService) register() {
 	svcs, err := portmapper.Services()
 	if err != nil {
-		log.Println(err.Error())
+		logrus.WithFields(logrus.Fields{"module": "registration", "event": "register", "Error": err}).Error("Error getting portmapper services")
 		return
 	}
 
 	ip, err := ioutil.ReadFile(IPFilePath)
 	if err != nil {
-		log.Println("Error reading IP from file:", IPFilePath)
-		log.Println(err.Error())
+		logrus.WithFields(logrus.Fields{"module": "registration", "event": "register", "Error": err}).Error("Error reading IP from file:", IPFilePath)
 		return
 	}
 
 	if len(ip) == 0 {
-		log.Println("IP file empty:", IPFilePath)
+		logrus.WithFields(logrus.Fields{"module": "registration", "event": "register"}).Warn("IP file empty: ", IPFilePath)
 		return
 	}
 
@@ -72,14 +71,13 @@ func (s *producerService) register() {
 
 	msgBytes, err := json.Marshal(msg)
 	if err != nil {
-		log.Println("Unable to marshal message:", msg)
-		log.Println(err.Error())
+		logrus.WithFields(logrus.Fields{"module": "registration", "event": "register", "Error": err}).Error("Unable to marshal message: ", string(msgBytes))
 		return
 	}
 
-	log.Println("Publishing message:", string(msgBytes))
+	logrus.WithFields(logrus.Fields{"module": "registration", "event": "register"}).Info("Publishing message: ", string(msgBytes))
 	if err := s.producer.Publish(nsqdTopic, msgBytes); err != nil {
-		log.Println(err.Error())
+		logrus.WithFields(logrus.Fields{"module": "registration", "event": "register", "Error": err}).Error("Error Publishing message: ", string(msgBytes))
 	}
 }
 
@@ -103,8 +101,6 @@ func (s *producerService) Start() error {
 	if err != nil {
 		return err
 	}
-	producer.SetLogger(log.New(os.Stderr, "", log.LstdFlags), nsq.LogLevelInfo)
-
 	s.producer = producer
 
 	go s.registrationLoop()

@@ -2,6 +2,12 @@
 	"version": 0,
 	"dependencies": [
 		{
+			"importpath": "github.com/Sirupsen/logrus",
+			"repository": "https://github.com/Sirupsen/logrus",
+			"revision": "446d1c146faa8ed3f4218f056fcd165f6bcfda81",
+			"branch": "master"
+		},
+		{
 			"importpath": "github.com/aws/aws-sdk-go",
 			"repository": "https://github.com/aws/aws-sdk-go",
 			"revision": "1dc63737201ce6f6fb46c49c259cf2147cc67891",
@@ -14,11 +20,192 @@
 			"branch": "master"
 		},
 		{
-			"importpath": "github.com/coreos/go-etcd/etcd",
-			"repository": "https://github.com/coreos/go-etcd",
-			"revision": "126041ef7b24a28359a12f8bf7f6a7db6756113d",
+			"importpath": "github.com/coreos/etcd",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/akrennmair/gopcap",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
 			"branch": "master",
-			"path": "/etcd"
+			"path": "/Godeps/_workspace/src/github.com/akrennmair/gopcap"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/bgentry/speakeasy",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/bgentry/speakeasy"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/boltdb/bolt",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/boltdb/bolt"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/cheggaaa/pb",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/cheggaaa/pb"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/codegangsta/cli",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/codegangsta/cli"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/coreos/go-semver/semver",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/coreos/go-semver/semver"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/coreos/go-systemd/daemon",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/coreos/go-systemd/daemon"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/coreos/go-systemd/util",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/coreos/go-systemd/util"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/coreos/pkg/capnslog",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/coreos/pkg/capnslog"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/gogo/protobuf/proto",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/gogo/protobuf/proto"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/google/btree",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/google/btree"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/jonboulle/clockwork",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/jonboulle/clockwork"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/prometheus/client_golang/prometheus",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/prometheus/client_golang/prometheus"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/prometheus/procfs",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/prometheus/procfs"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/spacejam/loghisto",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/spacejam/loghisto"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/spf13/cobra",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/spf13/cobra"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/spf13/pflag",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/spf13/pflag"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/ugorji/go/codec",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/ugorji/go/codec"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/github.com/xiang90/probing",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/github.com/xiang90/probing"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/golang.org/x/crypto/bcrypt",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/golang.org/x/crypto/bcrypt"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/golang.org/x/net/context",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/golang.org/x/net/context"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/golang.org/x/net/netutil",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/golang.org/x/net/netutil"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/Godeps/_workspace/src/google.golang.org/grpc",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/Godeps/_workspace/src/google.golang.org/grpc"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/client",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/client"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/pkg/pathutil",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "7e5b7cfc65b0dbe6b36408bcc363e7981eb52745",
+			"branch": "master",
+			"path": "/pkg/pathutil"
+		},
+		{
+			"importpath": "github.com/coreos/etcd/pkg/types",
+			"repository": "https://github.com/coreos/etcd",
+			"revision": "23d645babde95668580a86a274e2c18494b58bfd",
+			"branch": "master",
+			"path": "/pkg/types"
 		},
 		{
 			"importpath": "github.com/lsegal/gucumber",
@@ -41,7 +228,7 @@
 		{
 			"importpath": "github.com/opsee/portmapper",
 			"repository": "https://github.com/opsee/portmapper",
-			"revision": "b4877de1ed51c3d59be85fee5c6d0638ee9dd569",
+			"revision": "4b1e8d1cf4a6d187e6ba87fbe68ba4119afbecd1",
 			"branch": "master"
 		},
 		{
@@ -69,6 +256,13 @@
 			"repository": "https://github.com/vaughan0/go-ini",
 			"revision": "a98ad7ee00ec53921f08832bc06ecf7fd600e6a1",
 			"branch": "master"
+		},
+		{
+			"importpath": "golang.org/x/net/context",
+			"repository": "https://go.googlesource.com/net",
+			"revision": "6c89489cafabcbc76df9dbf84ebf07204673fecf",
+			"branch": "master",
+			"path": "/context"
 		},
 		{
 			"importpath": "golang.org/x/tools/go/ast/astutil",
@@ -104,6 +298,18 @@
 			"revision": "b48dc8da98ae78c3d11f220e7d327304c84e623a",
 			"branch": "master",
 			"path": "/go/types"
+		},
+		{
+			"importpath": "gopkg.in/airbrake/gobrake.v2",
+			"repository": "https://gopkg.in/airbrake/gobrake.v2",
+			"revision": "c9d51adc624b5cc4c1bf8de730a09af4878ffe2d",
+			"branch": "master"
+		},
+		{
+			"importpath": "gopkg.in/gemnasium/logrus-airbrake-hook.v2",
+			"repository": "https://gopkg.in/gemnasium/logrus-airbrake-hook.v2",
+			"revision": "31e6fd4bd5a98d8ee7673d24bc54ec73c31810dd",
+			"branch": "master"
 		}
 	]
 }

@@ -1,5 +1,5 @@
-bin
-target
-pkg
+./bin
+./target
+./pkg
 
 .tags
