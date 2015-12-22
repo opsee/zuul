@@ -17,7 +17,7 @@ const (
 	routesPath = "/opsee.co/routes"
 	// RegistrationTTL defines the number of seconds that a registration will be
 	// valid.
-	RegistrationTTL = 60
+	RegistrationTTL = 150
 )
 
 type consumerService struct {
@@ -70,7 +70,7 @@ func (c *consumerService) registerConnection(msg *nsq.Message) error {
 		return err
 	}
 
-	if _, err := c.etcdClient.Set(key, string(mapBytes), 60); err != nil {
+	if _, err := c.etcdClient.Set(key, string(mapBytes), RegistrationTTL); err != nil {
 		return err
 	}
 
