@@ -18,7 +18,7 @@ const (
 	routesPath = "/opsee.co/routes"
 	// RegistrationTTL defines the number of seconds that a registration will be
 	// valid.
-	RegistrationTTL   = 150
+	RegistrationTTL   = 180
 	RequestTimeoutSec = 120
 )
 
@@ -90,7 +90,7 @@ func (c *consumerService) registerConnection(msg *nsq.Message) error {
 		ctx, cancel := context.WithTimeout(context.Background(), RequestTimeoutSec*time.Second)
 		defer cancel()
 
-		_, err := kAPI.Set(ctx, key, string(mapBytes), &client.SetOptions{TTL: RegistrationTTL})
+		_, err := kAPI.Set(ctx, key, string(mapBytes), &client.SetOptions{TTL: RegistrationTTL * time.Second})
 		if err != nil {
 			// handle error
 			if err == context.DeadlineExceeded {
