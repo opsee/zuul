@@ -120,7 +120,6 @@ func (c *consumerService) registerConnection(msg *nsq.Message) error {
 				"key":     key,
 				"val":     string(mapBytes),
 				"attempt": try,
-				"errstr":  err.Error(),
 			}).Info("Successfully registered service with etcd")
 			break
 		}
