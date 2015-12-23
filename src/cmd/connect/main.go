@@ -46,7 +46,7 @@ func main() {
 		},
 		cli.StringSliceFlag{
 			Name:  "nsqlookupd-tcp-address",
-			Value: &cli.StringSlice{"nsqlookupd-1.opsy.co:4161", "nsqlookupd-2.opsy.co:4161"},
+			Value: &cli.StringSlice{},
 		},
 		cli.IntFlag{
 			Name:  "consumer-concurrency",
