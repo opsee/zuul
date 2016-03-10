@@ -222,7 +222,7 @@
 		{
 			"importpath": "github.com/nsqio/go-nsq",
 			"repository": "https://github.com/nsqio/go-nsq",
-			"revision": "04ffac3a59c9cb94c3eed73ec965d87762bcebe9",
+			"revision": "0b80d6f05e15ca1930e0c5e1d540ed627e299980",
 			"branch": "master"
 		},
 		{
