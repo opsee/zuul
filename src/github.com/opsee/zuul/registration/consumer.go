@@ -19,7 +19,7 @@ const (
 	// RegistrationTTL defines the number of seconds that a registration will be
 	// valid.
 	RegistrationTTL   = 180
-	RequestTimeoutSec = 120
+	RequestTimeoutSec = 30
 )
 
 type consumerService struct {
@@ -86,46 +86,21 @@ func (c *consumerService) registerConnection(msg *nsq.Message) error {
 	}
 
 	kAPI := client.NewKeysAPI(c.etcdClient)
-	for try := 0; try < c.maxRetries; try++ {
-		ctx, cancel := context.WithTimeout(context.Background(), RequestTimeoutSec*time.Second)
-		defer cancel()
+	ctx, cancel := context.WithTimeout(context.Background(), RequestTimeoutSec*time.Second)
+	defer cancel()
 
-		_, err := kAPI.Set(ctx, key, string(mapBytes), &client.SetOptions{TTL: RegistrationTTL * time.Second})
-		if err != nil {
-			// handle error
-			if err == context.DeadlineExceeded {
-				logrus.WithFields(logrus.Fields{
-					"module":  "register",
-					"event":   "registerConnection",
-					"key":     key,
-					"val":     string(mapBytes),
-					"attempt": try,
-					"errstr":  err.Error(),
-				}).Warn("Service path set exceeded context deadline. Retrying")
-			} else {
-				logrus.WithFields(logrus.Fields{
-					"module":  "register",
-					"event":   "registerConnection",
-					"key":     key,
-					"val":     string(mapBytes),
-					"attempt": try,
-					"errstr":  err.Error(),
-				}).Error("Service path set failed.")
-				return err
-			}
-		} else {
-			logrus.WithFields(logrus.Fields{
-				"module":  "register",
-				"event":   "registerConnection",
-				"key":     key,
-				"val":     string(mapBytes),
-				"attempt": try,
-			}).Info("Successfully registered service with etcd")
-			break
-		}
-
-		time.Sleep(2 << uint(try) * time.Millisecond)
+	_, err = kAPI.Set(ctx, key, string(mapBytes), &client.SetOptions{TTL: RegistrationTTL * time.Second})
+	if err != nil {
+		logrus.WithError(err).Error("Couldn't register with etcd")
+		return err
 	}
+
+	logrus.WithFields(logrus.Fields{
+		"module": "register",
+		"event":  "registerConnection",
+		"key":    key,
+		"val":    string(mapBytes),
+	}).Info("Successfully registered service with etcd")
 
 	return nil
 }
