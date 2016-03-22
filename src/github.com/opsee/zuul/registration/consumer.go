@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Sirupsen/logrus"
+	log "github.com/Sirupsen/logrus"
 	"github.com/coreos/etcd/Godeps/_workspace/src/golang.org/x/net/context"
 	"github.com/coreos/etcd/client"
 	"github.com/nsqio/go-nsq"
@@ -67,11 +67,13 @@ func NewConsumer(consumerName, etcdHost string, nsqLookupdHosts []string, concur
 func (c *consumerService) registerConnection(msg *nsq.Message) error {
 	cMsg := &ConnectedMessage{}
 	if err := json.Unmarshal(msg.Body, cMsg); err != nil {
-		logrus.WithFields(logrus.Fields{"module": "register", "event": "registerConnection", "Error": err}).Error("Error unmarshaling connected message: ", msg)
-		return err
+		log.WithError(err).Error("error unmarshaling connected message: ", msg)
+		return nil
 	}
 
-	logrus.WithFields(logrus.Fields{"module": "register", "event": "registerConnection"}).Info("Handling message: ", string(msg.Body))
+	logger := log.WithFields(log.Fields{"customer_id": cMsg.CustomerID, "bastion_id": cMsg.BastionID})
+	logger.Info("handling message")
+
 	svcMap := make(map[string]*portmapper.Service)
 
 	for _, svc := range cMsg.Services {
@@ -82,7 +84,8 @@ func (c *consumerService) registerConnection(msg *nsq.Message) error {
 	key := fmt.Sprintf("/opsee.co/routes/%s/%s", cMsg.CustomerID, cMsg.BastionID)
 	mapBytes, err := json.Marshal(svcMap)
 	if err != nil {
-		return err
+		logger.WithError(err).Error("error marshaling service map")
+		return nil
 	}
 
 	kAPI := client.NewKeysAPI(c.etcdClient)
@@ -91,16 +94,11 @@ func (c *consumerService) registerConnection(msg *nsq.Message) error {
 
 	_, err = kAPI.Set(ctx, key, string(mapBytes), &client.SetOptions{TTL: RegistrationTTL * time.Second})
 	if err != nil {
-		logrus.WithError(err).Error("Couldn't register with etcd")
-		return err
+		logger.WithError(err).Error("couldn't register with etcd")
+		return nil
 	}
 
-	logrus.WithFields(logrus.Fields{
-		"module": "register",
-		"event":  "registerConnection",
-		"key":    key,
-		"val":    string(mapBytes),
-	}).Info("Successfully registered service with etcd")
+	logger.Info("successfully registered service with etcd")
 
 	return nil
 }
