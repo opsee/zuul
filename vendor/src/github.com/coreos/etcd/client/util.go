@@ -1,4 +1,4 @@
-// Copyright 2015 CoreOS, Inc.
+// Copyright 2016 CoreOS, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,27 +14,10 @@
 
 package client
 
-import (
-	"errors"
-	"net/http"
-)
-
-func (t *fakeTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-	select {
-	case resp := <-t.respchan:
-		return resp, nil
-	case err := <-t.errchan:
-		return nil, err
-	case <-t.startCancel:
-	case <-req.Cancel:
+// IsKeyNotFound returns true if the error code is ErrorCodeKeyNotFound.
+func IsKeyNotFound(err error) bool {
+	if cErr, ok := err.(Error); ok {
+		return cErr.Code == ErrorCodeKeyNotFound
 	}
-	select {
-	// this simulates that the request is finished before cancel effects
-	case resp := <-t.respchan:
-		return resp, nil
-	// wait on finishCancel to simulate taking some amount of
-	// time while calling CancelRequest
-	case <-t.finishCancel:
-		return nil, errors.New("cancelled")
-	}
+	return false
 }
