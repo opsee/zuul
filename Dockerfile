@@ -9,4 +9,4 @@ RUN mkdir -p /zuul/bin /opt/bin && \
     chmod 755 /opt/bin/ec2-env
 
 COPY register.sh /zuul/bin/register.sh
-COPY bin/ /zuul/bin/
+COPY target/linux/amd64/bin/ /zuul/bin/

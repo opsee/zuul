@@ -8,11 +8,11 @@ dependencies:
     - docker info
     - go version
     - sudo pip install awscli
-    - docker pull quay.io/opsee/build-go:go15
+    - docker pull quay.io/opsee/build-go:16
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USERNAME -p $DOCKER_PASSWORD quay.io
 test:
   override:
-    - docker run -v `pwd`:/build quay.io/opsee/build-go:15
+    - docker run -v $(pwd):/gopath/src/github.com/opsee/zuul -e PROJECT=github.com/opsee/zuul quay.io/opsee/build-go:16
     - docker build -t quay.io/opsee/zuul:$CIRCLE_SHA1 .
     - docker push quay.io/opsee/zuul:$CIRCLE_SHA1
 deployment:
@@ -20,7 +20,7 @@ deployment:
     branch: master
     owner: opsee
     commands:
-      - aws s3 cp --acl public-read bin/auth s3://opsee-releases/go/zuul/auth
-      - aws s3 cp --acl public-read bin/register s3://opsee-releases/go/zuul/register
+      - aws s3 cp --acl public-read target/linux/amd64/bin/auth s3://opsee-releases/go/zuul/auth
+      - aws s3 cp --acl public-read target/linux/amd64/bin/register s3://opsee-releases/go/zuul/register
       - docker tag -f quay.io/opsee/zuul:$CIRCLE_SHA1 quay.io/opsee/zuul:latest
       - docker push quay.io/opsee/zuul:latest
