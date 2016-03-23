@@ -8,11 +8,11 @@ dependencies:
     - docker info
     - go version
     - sudo pip install awscli
-    - docker pull quay.io/opsee/build-go:latest
+    - docker pull quay.io/opsee/build-go:go15
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USERNAME -p $DOCKER_PASSWORD quay.io
 test:
   override:
-    - docker run -v `pwd`:/build quay.io/opsee/build-go:latest
+    - docker run -v `pwd`:/build quay.io/opsee/build-go:go15
     - docker build -t quay.io/opsee/zuul:$CIRCLE_SHA1 .
     - docker push quay.io/opsee/zuul:$CIRCLE_SHA1
 deployment:

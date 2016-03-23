@@ -27,8 +27,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/coreos/etcd/Godeps/_workspace/src/golang.org/x/net/context"
 	"github.com/coreos/etcd/pkg/testutil"
+	"golang.org/x/net/context"
 )
 
 type actionAssertingHTTPClient struct {
@@ -851,7 +851,7 @@ func TestHTTPClusterClientSyncPinEndpoint(t *testing.T) {
 		}
 
 		if g := hc.endpoints[hc.pinned]; g != pinnedEndpoint {
-			t.Errorf("#%d: pinned endpoint = %s, want %s", i, g, pinnedEndpoint)
+			t.Errorf("#%d: pinned endpoint = %v, want %v", i, g, pinnedEndpoint)
 		}
 	}
 }

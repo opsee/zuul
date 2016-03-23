@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"time"
 
+	"golang.org/x/net/context"
+
 	log "github.com/Sirupsen/logrus"
-	"github.com/coreos/etcd/Godeps/_workspace/src/golang.org/x/net/context"
 	"github.com/coreos/etcd/client"
 	"github.com/nsqio/go-nsq"
 	"github.com/opsee/portmapper"
@@ -45,65 +46,71 @@ func NewConsumer(consumerName, etcdHost string, nsqLookupdHosts []string, concur
 		HeaderTimeoutPerRequest: time.Second,
 	}
 	// initialize a new etcd client
-	c, err := client.New(cfg)
+	etcdClient, err := client.New(cfg)
 	if err != nil {
 		panic(err)
 	}
 
 	svc := &consumerService{
-		c,
+		etcdClient,
 		consumer,
 		make(chan struct{}, 1),
 		nsqLookupdHosts,
 		maxRetries,
 	}
 
-	svc.consumer.AddConcurrentHandlers(nsq.HandlerFunc(svc.registerConnection), concurrency)
+	svc.consumer.AddConcurrentHandlers(nsq.HandlerFunc(func(message *nsq.Message) error {
+		cMsg := &ConnectedMessage{}
+		if err := json.Unmarshal(message.Body, cMsg); err != nil {
+			log.WithError(err).Error("error unmarshaling connected message: ", cMsg)
+			return nil
+		}
+
+		logger := log.WithFields(log.Fields{"customer_id": cMsg.CustomerID, "bastion_id": cMsg.BastionID})
+		logger.Info("handling message")
+
+		svcMap := make(map[string]*portmapper.Service)
+
+		for _, svc := range cMsg.Services {
+			svc.Hostname = cMsg.IPAddress
+			svcMap[svc.Name] = svc
+		}
+
+		key := fmt.Sprintf("/opsee.co/routes/%s/%s", cMsg.CustomerID, cMsg.BastionID)
+		mapBytes, err := json.Marshal(svcMap)
+		if err != nil {
+			logger.WithError(err).Error("error marshaling service map")
+			return nil
+		}
+
+		kAPI := client.NewKeysAPI(etcdClient)
+		ctx, cancel := context.WithTimeout(context.Background(), RequestTimeoutSec*time.Second)
+		defer cancel()
+
+		_, err = kAPI.Set(ctx, key, string(mapBytes), &client.SetOptions{TTL: RegistrationTTL * time.Second})
+		if err != nil {
+			logger.WithError(err).Error("couldn't register with etcd")
+			return nil
+		}
+
+		logger.Info("successfully registered service with etcd")
+		message.Finish()
+		return nil
+	}), concurrency)
 
 	return svc, nil
 }
 
-// /opsee.co/routes/customer_id/instance_id
-func (c *consumerService) registerConnection(msg *nsq.Message) error {
-	cMsg := &ConnectedMessage{}
-	if err := json.Unmarshal(msg.Body, cMsg); err != nil {
-		log.WithError(err).Error("error unmarshaling connected message: ", msg)
-		return nil
-	}
-
-	logger := log.WithFields(log.Fields{"customer_id": cMsg.CustomerID, "bastion_id": cMsg.BastionID})
-	logger.Info("handling message")
-
-	svcMap := make(map[string]*portmapper.Service)
-
-	for _, svc := range cMsg.Services {
-		svc.Hostname = cMsg.IPAddress
-		svcMap[svc.Name] = svc
-	}
-
-	key := fmt.Sprintf("/opsee.co/routes/%s/%s", cMsg.CustomerID, cMsg.BastionID)
-	mapBytes, err := json.Marshal(svcMap)
-	if err != nil {
-		logger.WithError(err).Error("error marshaling service map")
-		return nil
-	}
-
-	kAPI := client.NewKeysAPI(c.etcdClient)
-	ctx, cancel := context.WithTimeout(context.Background(), RequestTimeoutSec*time.Second)
-	defer cancel()
-
-	_, err = kAPI.Set(ctx, key, string(mapBytes), &client.SetOptions{TTL: RegistrationTTL * time.Second})
-	if err != nil {
-		logger.WithError(err).Error("couldn't register with etcd")
-		return nil
-	}
-
-	logger.Info("successfully registered service with etcd")
-
-	return nil
-}
-
 func (c *consumerService) Start() error {
+	go func() {
+		for {
+			stats := c.consumer.Stats()
+			isStarved := c.consumer.IsStarved()
+			log.Infof("(NSQ) Received:%d, Finished:%d, Requeued:%d, Connections: %d, Starved: %t", stats.MessagesReceived, stats.MessagesFinished, stats.MessagesRequeued, stats.Connections, isStarved)
+			time.Sleep(time.Duration(30) * time.Second)
+		}
+	}()
+
 	return c.consumer.ConnectToNSQLookupds(c.lookupdHosts)
 }
 
