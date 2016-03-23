@@ -1,0 +1,789 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"path": "github.com/Sirupsen/logrus",
+			"revision": "4b6ea7319e214d98c938f12692336f7ca9348d6b",
+			"revisionTime": "2016-03-17T14:11:10Z"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/aws",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/aws/awserr",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/aws/awsutil",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/aws/client",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/aws/client/metadata",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/aws/corehandlers",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/aws/credentials",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/aws/credentials/ec2rolecreds",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/aws/defaults",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/aws/ec2metadata",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/aws/request",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/aws/session",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/awsmigrate/awsmigrate-renamer/rename",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/private/endpoints",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/private/protocol",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/private/protocol/ec2query",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/private/protocol/json/jsonutil",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/private/protocol/jsonrpc",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/private/protocol/query",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/private/protocol/query/queryutil",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/private/protocol/rest",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/private/protocol/restjson",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/private/protocol/restxml",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/private/signer/v4",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/private/waiter",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/autoscaling",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/autoscaling/autoscalingiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudformation",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudformation/cloudformationiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudfront",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudfront/cloudfrontiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudhsm",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudhsm/cloudhsmiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudsearch",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudsearch/cloudsearchiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudsearchdomain",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudsearchdomain/cloudsearchdomainiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudtrail",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudtrail/cloudtrailiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudwatch",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudwatch/cloudwatchiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudwatchlogs",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cloudwatchlogs/cloudwatchlogsiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/codecommit",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/codecommit/codecommitiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/codedeploy",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/codedeploy/codedeployiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/codepipeline",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/codepipeline/codepipelineiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cognitoidentity",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cognitoidentity/cognitoidentityiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cognitosync",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/cognitosync/cognitosynciface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/configservice",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/configservice/configserviceiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/datapipeline",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/datapipeline/datapipelineiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/devicefarm",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/devicefarm/devicefarmiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/directconnect",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/directconnect/directconnectiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/directoryservice",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/directoryservice/directoryserviceiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/dynamodb",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/dynamodbstreams",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/dynamodbstreams/dynamodbstreamsiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/ec2",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/ec2/ec2iface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/ecs",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/ecs/ecsiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/efs",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/efs/efsiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/elasticache",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/elasticache/elasticacheiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/elasticbeanstalk",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/elasticbeanstalk/elasticbeanstalkiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/elastictranscoder",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/elastictranscoder/elastictranscoderiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/elb",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/elb/elbiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/emr",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/emr/emriface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/glacier",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/glacier/glacieriface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/iam",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/iam/iamiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/kinesis",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/kinesis/kinesisiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/kms",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/kms/kmsiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/lambda",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/lambda/lambdaiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/machinelearning",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/machinelearning/machinelearningiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/mobileanalytics",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/mobileanalytics/mobileanalyticsiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/opsworks",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/opsworks/opsworksiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/rds",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/rds/rdsiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/redshift",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/redshift/redshiftiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/route53",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/route53/route53iface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/route53domains",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/route53domains/route53domainsiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/s3",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/s3/s3iface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/s3/s3manager",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/ses",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/ses/sesiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/sns",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/sns/snsiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/sqs",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/sqs/sqsiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/ssm",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/ssm/ssmiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/storagegateway",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/storagegateway/storagegatewayiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/sts",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/sts/stsiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/support",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/support/supportiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/swf",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/swf/swfiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/workspaces",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/aws/aws-sdk-go/service/workspaces/workspacesiface",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/codegangsta/cli",
+			"revision": "9fec0fad02befc9209347cc6d620e68e1b45f74d",
+			"revisionTime": "2016-03-21T23:42:55-05:00"
+		},
+		{
+			"path": "github.com/coreos/etcd/client",
+			"revision": "ca5dff66828657c62c304ad0debc7fb239eab899",
+			"revisionTime": "2016-03-23T10:32:49-07:00"
+		},
+		{
+			"path": "github.com/coreos/etcd/pkg/pathutil",
+			"revision": "ca5dff66828657c62c304ad0debc7fb239eab899",
+			"revisionTime": "2016-03-23T10:32:49-07:00"
+		},
+		{
+			"path": "github.com/coreos/etcd/pkg/testutil",
+			"revision": "ca5dff66828657c62c304ad0debc7fb239eab899",
+			"revisionTime": "2016-03-23T10:32:49-07:00"
+		},
+		{
+			"path": "github.com/coreos/etcd/pkg/types",
+			"revision": "ca5dff66828657c62c304ad0debc7fb239eab899",
+			"revisionTime": "2016-03-23T10:32:49-07:00"
+		},
+		{
+			"path": "github.com/davecgh/go-spew/spew",
+			"revision": "5215b55f46b2b919f50a1df0eaa5886afe4e3b3d",
+			"revisionTime": "2015-11-05T15:09:06-06:00"
+		},
+		{
+			"origin": "github.com/aws/aws-sdk-go/vendor/github.com/go-ini/ini",
+			"path": "github.com/go-ini/ini",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"origin": "github.com/aws/aws-sdk-go/vendor/github.com/jmespath/go-jmespath",
+			"path": "github.com/jmespath/go-jmespath",
+			"revision": "4da0bec8953a0a540f391930a946917b12a95671",
+			"revisionTime": "2016-03-17T16:54:49-07:00"
+		},
+		{
+			"path": "github.com/mreiferson/go-snappystream",
+			"revision": "028eae7ab5c4c9e2d1cb4c4ca1e53259bbe7e504",
+			"revisionTime": "2015-04-16T16:44:20-07:00"
+		},
+		{
+			"path": "github.com/mreiferson/go-snappystream/snappy-go",
+			"revision": "028eae7ab5c4c9e2d1cb4c4ca1e53259bbe7e504",
+			"revisionTime": "2015-04-16T16:44:20-07:00"
+		},
+		{
+			"path": "github.com/nsqio/go-nsq",
+			"revision": "383c07cb720e95787ddfc616fe8eb0136254e626",
+			"revisionTime": "2015-09-02T08:43:04-07:00"
+		},
+		{
+			"path": "github.com/opsee/portmapper",
+			"revision": "4b1e8d1cf4a6d187e6ba87fbe68ba4119afbecd1",
+			"revisionTime": "2015-11-02T13:57:53-08:00"
+		},
+		{
+			"path": "github.com/pmezard/go-difflib/difflib",
+			"revision": "d8ed2627bdf02c080bf22230dbb337003b7aba2d",
+			"revisionTime": "2015-10-28T10:42:44+01:00"
+		},
+		{
+			"path": "github.com/shiena/ansicolor",
+			"revision": "a5e2b567a4dd6cc74545b8a4f27c9d63b9e7735b",
+			"revisionTime": "2015-07-19T16:15:31+09:00"
+		},
+		{
+			"path": "github.com/stretchr/testify/assert",
+			"revision": "67106a5111a06241c8d84952c33214675f51a34a",
+			"revisionTime": "2015-11-11T20:33:49+01:00"
+		},
+		{
+			"origin": "github.com/coreos/etcd/vendor/github.com/ugorji/go/codec",
+			"path": "github.com/ugorji/go/codec",
+			"revision": "ca5dff66828657c62c304ad0debc7fb239eab899",
+			"revisionTime": "2016-03-23T10:32:49-07:00"
+		},
+		{
+			"path": "github.com/vaughan0/go-ini",
+			"revision": "a98ad7ee00ec53921f08832bc06ecf7fd600e6a1",
+			"revisionTime": "2013-09-23T16:52:12+02:00"
+		},
+		{
+			"path": "golang.org/x/net/context",
+			"revision": "35b06af0720201bc2f326773a80767387544f8c4",
+			"revisionTime": "2016-03-15T14:00:09+11:00"
+		},
+		{
+			"path": "golang.org/x/tools/go/ast/astutil",
+			"revision": "c262de870b618eed648983aa994b03bc04641c72",
+			"revisionTime": "2015-09-15T19:11:23+02:00"
+		},
+		{
+			"path": "golang.org/x/tools/go/buildutil",
+			"revision": "c262de870b618eed648983aa994b03bc04641c72",
+			"revisionTime": "2015-09-15T19:11:23+02:00"
+		},
+		{
+			"path": "golang.org/x/tools/go/exact",
+			"revision": "c262de870b618eed648983aa994b03bc04641c72",
+			"revisionTime": "2015-09-15T19:11:23+02:00"
+		},
+		{
+			"path": "golang.org/x/tools/go/gcimporter",
+			"revision": "c262de870b618eed648983aa994b03bc04641c72",
+			"revisionTime": "2015-09-15T19:11:23+02:00"
+		},
+		{
+			"path": "golang.org/x/tools/go/loader",
+			"revision": "c262de870b618eed648983aa994b03bc04641c72",
+			"revisionTime": "2015-09-15T19:11:23+02:00"
+		},
+		{
+			"path": "golang.org/x/tools/go/types",
+			"revision": "c262de870b618eed648983aa994b03bc04641c72",
+			"revisionTime": "2015-09-15T19:11:23+02:00"
+		},
+		{
+			"path": "golang.org/x/tools/go/types/typeutil",
+			"revision": "c262de870b618eed648983aa994b03bc04641c72",
+			"revisionTime": "2015-09-15T19:11:23+02:00"
+		}
+	]
+}
