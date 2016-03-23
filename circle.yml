@@ -12,7 +12,7 @@ dependencies:
     - docker login -e $DOCKER_EMAIL -u $DOCKER_USERNAME -p $DOCKER_PASSWORD quay.io
 test:
   override:
-    - docker run -v `pwd`:/build quay.io/opsee/build-go:go15
+    - docker run -v `pwd`:/build quay.io/opsee/build-go:15
     - docker build -t quay.io/opsee/zuul:$CIRCLE_SHA1 .
     - docker push quay.io/opsee/zuul:$CIRCLE_SHA1
 deployment:
