@@ -11,6 +11,8 @@ import (
 	"github.com/coreos/etcd/client"
 	"github.com/nsqio/go-nsq"
 	"github.com/opsee/portmapper"
+	stdlog "log"
+	"os"
 )
 
 // /opsee.co/routes/customer_id/instance_id/svcname = ip:port
@@ -38,6 +40,8 @@ func NewConsumer(consumerName, etcdHost string, nsqLookupdHosts []string, concur
 	if err != nil {
 		return nil, err
 	}
+
+	consumer.SetLogger(stdlog.New(os.Stdout, "[nsqd] ", stdlog.LstdFlags), nsq.LogLevelDebug)
 
 	cfg := client.Config{
 		Endpoints: []string{etcdHost},
