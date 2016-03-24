@@ -7,12 +7,13 @@ import (
 
 	"golang.org/x/net/context"
 
+	stdlog "log"
+	"os"
+
 	log "github.com/Sirupsen/logrus"
 	"github.com/coreos/etcd/client"
 	"github.com/nsqio/go-nsq"
 	"github.com/opsee/portmapper"
-	stdlog "log"
-	"os"
 )
 
 // /opsee.co/routes/customer_id/instance_id/svcname = ip:port
@@ -36,7 +37,9 @@ type consumerService struct {
 // NewConsumer creates a new consumer service connected to the "connected" topic
 // in NSQ.
 func NewConsumer(consumerName, etcdHost string, nsqLookupdHosts []string, concurrency int, maxRetries int) (*consumerService, error) {
-	consumer, err := nsq.NewConsumer("_.connected", consumerName, nsq.NewConfig())
+	config := nsq.NewConfig()
+	config.MaxInFlight = 4
+	consumer, err := nsq.NewConsumer("_.connected", consumerName, config)
 	if err != nil {
 		return nil, err
 	}
