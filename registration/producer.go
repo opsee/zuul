@@ -8,6 +8,8 @@ import (
 	"time"
 
 	"github.com/Sirupsen/logrus"
+	"github.com/aws/aws-sdk-go/aws/ec2metadata"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/nsqio/go-nsq"
 	"github.com/opsee/portmapper"
 )
@@ -21,6 +23,14 @@ type producerService struct {
 	customerID           string
 	bastionID            string
 	instanceID           string
+}
+
+var (
+	metadataClient *ec2metadata.EC2Metadata
+)
+
+func init() {
+	metadataClient = ec2metadata.New(session.New())
 }
 
 // NewProducer creates a new registration.Service for NSQ using portmapper.
@@ -54,19 +64,28 @@ func (s *producerService) register() {
 	}
 
 	if len(ip) == 0 {
-		logrus.WithFields(logrus.Fields{"module": "registration", "event": "register"}).Warn("IP file empty: ", IPFilePath)
+		logrus.WithFields(logrus.Fields{"module": "registration", "event": "register"}).Error("IP file empty: ", IPFilePath)
 		return
 	}
-
 	ipStr := strings.TrimRight(string(ip), "\n")
 
+	// If we get an error here, it's not the end of the world. Just ignore it. Either we couldn't
+	// hit the metadata service (problem, but we're probably being terminated or ec2 is on fire)
+	// or we don't have a public IP (in which case, the metadata service will return a 404, and
+	// i'm guessing this returns an error.
+	publicIP, err := metadataClient.GetMetadata("public-ipv4")
+	if err != nil {
+		logrus.WithFields(logrus.Fields{"module": "registration", "event": "register"}).Error("Unable to determine if instance has public IP.")
+	}
+
 	msg := &ConnectedMessage{
-		s.customerID,
-		s.bastionID,
-		s.instanceID,
-		ipStr,
-		svcs,
-		time.Now().Unix(),
+		CustomerID: s.customerID,
+		BastionID:  s.bastionID,
+		InstanceID: s.instanceID,
+		IPAddress:  ipStr,
+		PublicIP:   publicIP,
+		Services:   svcs,
+		Timestamp:  time.Now().Unix(),
 	}
 
 	msgBytes, err := json.Marshal(msg)
