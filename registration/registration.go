@@ -25,6 +25,7 @@ type ConnectedMessage struct {
 	BastionID  string                `json:"bastion_id"`
 	InstanceID string                `json:"instance_id"`
 	IPAddress  string                `json:"ip_address"`
+	PublicIP   string                `json:"public_ip"`
 	Services   []*portmapper.Service `json:"services"`
 	Timestamp  int64                 `json:"timestamp"`
 }
