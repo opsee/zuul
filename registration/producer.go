@@ -23,6 +23,7 @@ type producerService struct {
 	customerID           string
 	bastionID            string
 	instanceID           string
+	executionGroupID     string
 }
 
 var (
@@ -34,7 +35,7 @@ func init() {
 }
 
 // NewProducer creates a new registration.Service for NSQ using portmapper.
-func NewProducer(interval time.Duration, nsqdHost string, customerID string, bastionID string, instanceID string) *producerService {
+func NewProducer(interval time.Duration, nsqdHost string, customerID string, bastionID string, instanceID string, exgID string) *producerService {
 	svc := &producerService{
 		nsqdHost:             nsqdHost,
 		portmapPath:          portmapper.RegistryPath,
@@ -43,6 +44,7 @@ func NewProducer(interval time.Duration, nsqdHost string, customerID string, bas
 		customerID:           customerID,
 		bastionID:            bastionID,
 		instanceID:           instanceID,
+		executionGroupID:     exgID,
 	}
 
 	portmapper.EtcdHost = os.Getenv("ETCD_HOST")
@@ -79,13 +81,14 @@ func (s *producerService) register() {
 	}
 
 	msg := &ConnectedMessage{
-		CustomerID: s.customerID,
-		BastionID:  s.bastionID,
-		InstanceID: s.instanceID,
-		IPAddress:  ipStr,
-		PublicIP:   publicIP,
-		Services:   svcs,
-		Timestamp:  time.Now().Unix(),
+		ExecutionGroupID: s.executionGroupID,
+		CustomerID:       s.customerID,
+		BastionID:        s.bastionID,
+		InstanceID:       s.instanceID,
+		IPAddress:        ipStr,
+		PublicIP:         publicIP,
+		Services:         svcs,
+		Timestamp:        time.Now().Unix(),
 	}
 
 	msgBytes, err := json.Marshal(msg)

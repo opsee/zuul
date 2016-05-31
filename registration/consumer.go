@@ -100,6 +100,15 @@ func NewConsumer(consumerName, etcdHost string, nsqLookupdHosts []string, concur
 			return nil
 		}
 
+		if cMsg.ExecutionGroupID != "" {
+			key := fmt.Sprintf("/opsee.co/routes/%s/%s", cMsg.ExecutionGroupID, cMsg.BastionID)
+			_, err = kAPI.Set(ctx, key, string(mapBytes), &client.SetOptions{TTL: RegistrationTTL * time.Second})
+			if err != nil {
+				logger.WithError(err).Error("couldn't register with etcd")
+				return nil
+			}
+		}
+
 		logger.Info("successfully registered service with etcd")
 		message.Finish()
 		return nil
