@@ -21,13 +21,14 @@ func init() {
 // /opsee.co/routes/customer_id/instance_id/svcname = ip:port
 
 type ConnectedMessage struct {
-	CustomerID string                `json:"customer_id"`
-	BastionID  string                `json:"bastion_id"`
-	InstanceID string                `json:"instance_id"`
-	IPAddress  string                `json:"ip_address"`
-	PublicIP   string                `json:"public_ip"`
-	Services   []*portmapper.Service `json:"services"`
-	Timestamp  int64                 `json:"timestamp"`
+	CustomerID       string                `json:"customer_id"`
+	BastionID        string                `json:"bastion_id"`
+	InstanceID       string                `json:"instance_id"`
+	ExecutionGroupID string                `json:"execution_group_id"`
+	IPAddress        string                `json:"ip_address"`
+	PublicIP         string                `json:"public_ip"`
+	Services         []*portmapper.Service `json:"services"`
+	Timestamp        int64                 `json:"timestamp"`
 }
 
 // Service provides registration with Opsee of components exposed by
